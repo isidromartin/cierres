@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { CierreForm } from "@/components/cierre-form";
+import type { InitialData } from "@/components/cierre-form";
 
 interface Props {
   params: { id: string };
@@ -35,6 +36,8 @@ export default async function EditarCierrePage({ params }: Props) {
     .select("*")
     .eq("cierre_id", cierre.id);
 
+  const initialData: InitialData = { cierre, ingresos, gastos };
+
   return (
     <div className="max-w-3xl mx-auto w-full py-10">
       <h1 className="text-2xl font-bold mb-6">Editar cierre</h1>
@@ -42,7 +45,7 @@ export default async function EditarCierrePage({ params }: Props) {
         userId={user.id}
         modo="editar"
         cierreId={cierre.id}
-        initialData={{ cierre, ingresos, gastos }}
+        initialData={initialData}
       />
     </div>
   );

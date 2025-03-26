@@ -6,7 +6,7 @@ import { createBrowserClient } from "@supabase/ssr";
 
 type Modo = "crear" | "editar";
 
-type InitialData = {
+export type InitialData = {
   cierre: {
     fecha: string;
     notas: string;
