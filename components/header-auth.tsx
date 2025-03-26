@@ -16,14 +16,6 @@ export default async function AuthButton() {
     return (
       <>
         <div className="flex gap-4 items-center">
-          <div>
-            <Badge
-              variant={"default"}
-              className="font-normal pointer-events-none"
-            >
-              Please update .env.local file with anon key and url
-            </Badge>
-          </div>
           <div className="flex gap-2">
             <Button
               asChild
@@ -34,15 +26,6 @@ export default async function AuthButton() {
             >
               <Link href="/sign-in">Sign in</Link>
             </Button>
-            <Button
-              asChild
-              size="sm"
-              variant={"default"}
-              disabled
-              className="opacity-75 cursor-none pointer-events-none"
-            >
-              <Link href="/sign-up">Sign up</Link>
-            </Button>
           </div>
         </div>
       </>
@@ -50,20 +33,32 @@ export default async function AuthButton() {
   }
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
-      <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
-          Sign out
-        </Button>
-      </form>
+      <div className="flex gap-4 text-sm font-medium">
+        <Link href="/protected" className="hover:underline">
+          Dashboard
+        </Link>
+        <Link href="/protected/cierres" className="hover:underline">
+          Cierres
+        </Link>
+        <Link href="/protected/cierres/new" className="hover:underline">
+          Nuevo cierre
+        </Link>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-muted-foreground hidden sm:inline">
+          Hey, {user.email}!
+        </span>
+        <form action={signOutAction}>
+          <Button type="submit" size="sm" variant="outline">
+            Cerrar sesión
+          </Button>
+        </form>
+      </div>
     </div>
   ) : (
     <div className="flex gap-2">
       <Button asChild size="sm" variant={"outline"}>
         <Link href="/sign-in">Sign in</Link>
-      </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/sign-up">Sign up</Link>
       </Button>
     </div>
   );

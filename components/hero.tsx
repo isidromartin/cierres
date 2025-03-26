@@ -1,44 +1,31 @@
-import NextLogo from "./next-logo";
-import SupabaseLogo from "./supabase-logo";
-
 export default function Header() {
   return (
-    <div className="flex flex-col gap-16 items-center">
-      <div className="flex gap-8 justify-center items-center">
+    <section className="flex flex-col items-center text-center gap-6 py-20">
+      <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight max-w-2xl leading-tight">
+        Gestiona tus eventos <span className="text-primary">como un pro</span>
+      </h1>
+
+      <p className="text-muted-foreground text-lg max-w-xl">
+        Registra ingresos y gastos de cada noche, controla tu beneficio y lleva
+        el control de tu promotora de forma sencilla.
+      </p>
+
+      <div className="flex gap-4 mt-6">
         <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          rel="noreferrer"
+          href="/sign-in"
+          className="px-5 py-2 rounded-md bg-primary text-white hover:bg-primary/90 transition text-sm font-medium"
         >
-          <SupabaseLogo />
+          Empezar ahora
         </a>
-        <span className="border-l rotate-45 h-6" />
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-          <NextLogo />
+        <a
+          href="/protected/cierres"
+          className="px-5 py-2 rounded-md border text-sm font-medium hover:bg-muted transition"
+        >
+          Ver cierres
         </a>
       </div>
-      <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
-      <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-        The fastest way to build apps with{" "}
-        <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Supabase
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://nextjs.org/"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Next.js
-        </a>
-      </p>
-      <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
-    </div>
+
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-300 to-transparent my-12" />
+    </section>
   );
 }
