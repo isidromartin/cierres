@@ -31,10 +31,14 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-10 space-y-6">
-      <h1 className="text-2xl font-bold mb-4">Cierres recientes</h1>
+      <h1 className="text-2xl font-bold mb-4 text-foreground">
+        Cierres recientes
+      </h1>
 
       {cierres.length === 0 && (
-        <p className="text-gray-500">Aún no has registrado ningún cierre.</p>
+        <p className="text-muted-foreground">
+          Aún no has registrado ningún cierre.
+        </p>
       )}
 
       {cierres.map((cierre) => {
@@ -47,7 +51,7 @@ export default async function DashboardPage() {
         return (
           <div
             key={cierre.id}
-            className="border border-zinc-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition space-y-2"
+            className="border border-border rounded-lg p-4 bg-card shadow-sm hover:shadow-md transition space-y-2"
           >
             <div className="flex justify-between items-center text-sm text-muted-foreground">
               <span>
@@ -64,14 +68,14 @@ export default async function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-3 text-center text-sm font-medium">
-              <div className="text-green-700">
+              <div className="text-green-500">
                 + Ingresos: {totalIngresos.toFixed(2)} €
               </div>
-              <div className="text-red-600">
+              <div className="text-red-500">
                 – Gastos: {totalGastos.toFixed(2)} €
               </div>
               <div
-                className={beneficio >= 0 ? "text-green-800" : "text-red-700"}
+                className={beneficio >= 0 ? "text-green-600" : "text-red-600"}
               >
                 = Beneficio: {beneficio.toFixed(2)} €
               </div>

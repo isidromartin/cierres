@@ -50,16 +50,20 @@ export default async function ProtectedPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-10 space-y-6">
-      <h1 className="text-2xl font-bold mb-6">Resumen general</h1>
+      <h1 className="text-2xl font-bold mb-6 text-foreground">
+        Resumen general
+      </h1>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
-        <div className="bg-white p-4 rounded shadow">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
+        <div className="bg-card p-4 rounded shadow border border-border">
           <div className="text-xs text-muted-foreground mb-1">
             Cierres totales
           </div>
-          <div className="text-xl font-bold">{totalCierres}</div>
+          <div className="text-xl font-bold text-foreground">
+            {totalCierres}
+          </div>
         </div>
-        <div className="bg-white p-4 rounded shadow">
+        <div className="bg-card p-4 rounded shadow border border-border">
           <div className="text-xs text-muted-foreground mb-1">
             Total ingresos
           </div>
@@ -67,28 +71,30 @@ export default async function ProtectedPage() {
             {totalIngresos.toFixed(2)} €
           </div>
         </div>
-        <div className="bg-white p-4 rounded shadow">
+        <div className="bg-card p-4 rounded shadow border border-border">
           <div className="text-xs text-muted-foreground mb-1">Total gastos</div>
-          <div className="text-xl font-bold text-red-600">
+          <div className="text-xl font-bold text-red-500">
             {totalGastos.toFixed(2)} €
           </div>
         </div>
-        <div className="bg-white p-4 rounded shadow col-span-2 sm:col-span-1">
+        <div className="bg-card p-4 rounded shadow border border-border col-span-1 md:col-span-full lg:col-span-full">
           <div className="text-xs text-muted-foreground mb-1">
             Beneficio neto
           </div>
           <div
-            className={`text-xl font-bold ${beneficio >= 0 ? "text-green-700" : "text-red-700"}`}
+            className={`text-xl font-bold ${
+              beneficio >= 0 ? "text-green-600" : "text-red-600"
+            }`}
           >
             {beneficio.toFixed(2)} €
           </div>
         </div>
         {ultimoCierre && (
-          <div className="bg-white p-4 rounded shadow col-span-full">
+          <div className="bg-card p-4 rounded shadow border border-border col-span-full">
             <div className="text-xs text-muted-foreground mb-1">
               Último cierre
             </div>
-            <div className="text-sm font-medium text-gray-800">
+            <div className="text-sm font-medium text-foreground">
               {ultimoCierre.toLocaleDateString("es-ES", {
                 weekday: "short",
                 year: "numeric",

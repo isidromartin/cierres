@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
@@ -48,8 +48,42 @@ export default function RootLayout({
               <div className="flex flex-col gap-20 max-w-5xl p-5">
                 {children}
               </div>
-              <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-                <ThemeSwitcher />
+              {/* <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16"> */}
+              <footer className="w-full border-t border-border py-6 mt-10 text-sm text-muted-foreground">
+                <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+                  <span className="text-center md:text-left">
+                    © {new Date().getFullYear()} Cierres · Pristok Technology
+                  </span>
+
+                  <div className="items-center">
+                    <ThemeSwitcher />
+                  </div>
+
+                  <div className="flex gap-4 text-xs">
+                    <a
+                      href="https://pristok.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-foreground transition-colors"
+                    >
+                      Web oficial
+                    </a>
+                    <a
+                      href="mailto:info@pristok.com"
+                      className="hover:text-foreground transition-colors"
+                    >
+                      Contacto
+                    </a>
+                    <a
+                      href="https://github.com/tu-usuario"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-foreground transition-colors"
+                    >
+                      GitHub
+                    </a>
+                  </div>
+                </div>
               </footer>
             </div>
           </main>
