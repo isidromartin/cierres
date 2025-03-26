@@ -3,11 +3,7 @@ import { redirect } from "next/navigation";
 import { CierreForm } from "@/components/cierre-form";
 import type { InitialData } from "@/components/cierre-form";
 
-interface Props {
-  params: { id: string };
-}
-
-export default async function EditarCierrePage({ params }: Props) {
+export default async function EditarCierrePage({ params }: any) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -36,7 +32,7 @@ export default async function EditarCierrePage({ params }: Props) {
     .select("*")
     .eq("cierre_id", cierre.id);
 
-  const initialData: InitialData = { cierre, ingresos, gastos };
+  // const initialData: InitialData = { cierre, ingresos, gastos };
 
   return (
     <div className="max-w-3xl mx-auto w-full py-10">
@@ -45,7 +41,22 @@ export default async function EditarCierrePage({ params }: Props) {
         userId={user.id}
         modo="editar"
         cierreId={cierre.id}
-        initialData={initialData}
+        initialData={{
+          cierre: cierre as {
+            fecha: string;
+            notas: string;
+          },
+          ingresos: ingresos as {
+            tipo: string;
+            metodo_pago: string | null;
+            cantidad: number;
+          }[],
+          gastos: gastos as {
+            categoria: string;
+            cantidad: number;
+            detalle: string | null;
+          }[],
+        }}
       />
     </div>
   );

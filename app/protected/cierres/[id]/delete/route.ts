@@ -1,27 +1,24 @@
 // app/protected/cierres/[id]/delete/route.ts
 import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
-export async function POST(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: Request, context: any) {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect("/sign-in");
-
-  const { error } = await supabase
-    .from("cierres")
-    .delete()
-    .match({ id: params.id, user_id: user.id });
-
-  if (error) {
-    console.error("Error al eliminar:", error);
-    // Podrías redirigir con error visual aquí si quieres
+  if (!user) {
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  redirect("/protected/dashboard");
+  const { id } = context.params;
+
+  await supabase.from("cierres").delete().eq("id", id).eq("user_id", user.id);
+
+  // if (error) {
+  //   console.error("Error al eliminar:", error);
+  // }
+
+  return NextResponse.redirect(new URL("/protected/cierres", request.url));
 }
